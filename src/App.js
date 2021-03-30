@@ -258,12 +258,13 @@ const App = () => {
   
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/indicators/")
-      .then((response) => {
-        setIndicators(response.data);
-      })
-      .catch((e) => {
-        console.warn(e);
+    .get("http://127.0.0.1:8000/indicators/")
+    .then((response) => {
+      setIndicators(response.data);
+      setLoading(!loading);
+    })
+    .catch((e) => {
+      console.warn(e);
       });
   }, []);
   
@@ -287,7 +288,6 @@ const App = () => {
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/top_5/${category}`).then((response) => {
       setArrayOfTop5(response.data.data);
-      setLoading(!loading);
     });
   }, [category]);
 
